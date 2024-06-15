@@ -37,6 +37,12 @@ def login():
         print("Invalid username or password")
         return False
     
+def view_accounts():
+    cursor.execute("SELECT * FROM users")
+    accounts = cursor.fetchall()
+    for account in accounts:
+        print(f"Account Name: {account[0]}, Username: {account[1]}, Password: {account[2]}")
+    
 def main():
     while True:
         choice = input("Do you want to (1) Login or (2) Sign Up? (Enter 1 or 2): ")
