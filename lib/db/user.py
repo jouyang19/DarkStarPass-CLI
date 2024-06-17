@@ -65,10 +65,14 @@ class User:
             INSERT INTO users (username, password)
             VALUES ( ? , ? )
         """
-        
-        CURSOR.execute(sql, (self.username, self.password)) # executes SQL and inputs username and password as values for a new row in the users table in the vault database
-        CONN.commit() #commits the changes to the DB
-        
+        for item in self.get_all():
+            if item.username is not self.username:
+                CURSOR.execute(sql, (self.username, self.password)) # executes SQL and inputs username and password as values for a new row in the users table in the vault database
+                CONN.commit() #commits the changes to the DB
+                return
+            else:
+                print("This account already exists")
+
         self.id = CURSOR.lastrowid # Retrieves the primary key id of last row and saves it to instance id attribute.
         type(self).all[self.id] = self # creates a dictionary entry in User.all
         
