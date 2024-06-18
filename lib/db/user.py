@@ -145,7 +145,7 @@ class User:
         self.id = None # sets the id as None
         
     def passwords(self):
-        from password import Password
+        from db.password import Password
         sql = """
             SELECT * FROM passwords
             WHERE user_id = ?

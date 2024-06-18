@@ -5,7 +5,7 @@ class Password:
     
     all = {}
     
-    def __init__(self, title, username, password, user_id=None, id=None):
+    def __init__(self, title, username, password="", user_id=None, id=None):
         self.title = title
         self.username = username
         self.password = password
@@ -96,6 +96,16 @@ class Password:
         return [cls.instance_in_db(row) for row in rows]
     
     @classmethod
+    def get_all_by_id(cls, id):
+        """Returns a list containing a password object per row in the passwords table where it matches id value"""
+        sql = """
+            SELECT * FROM passwords
+            WHERE user_id = ?
+        """
+        rows = CURSOR.execute(sql, (id,)).fetchall()
+        return [cls.instance_in_db(row) for row in rows]
+    
+    @classmethod
     def find_by_id(cls, id):
         """Return a password object instance corresponding to the table row matching the specified primary key value"""
         sql = """
@@ -131,5 +141,5 @@ class Password:
             SELECT * FROM passwords
             WHERE user_id = ?
         """
-        row = CURSOR.execute(sql, (user_id, )).fetchone()
-        return cls.instance_in_db(row) if row else None
+        rows = CURSOR.execute(sql, (user_id, )).fetchall()
+        return [cls.instance_in_db(row) for row in rows]

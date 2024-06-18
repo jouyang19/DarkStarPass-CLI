@@ -19,6 +19,7 @@ def main():
             new_username = input("Username: ")
             new_password = input("Password: ")
             new_user = User(new_username, new_password)
+            User.create_table()
             new_user.save()
             
 
