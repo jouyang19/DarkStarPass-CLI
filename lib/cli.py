@@ -24,7 +24,7 @@ def log_in():
             return user_dashboard()
     else:
         print("Wrong username or password")
-        return log_in()
+        return main()
     
     
 def view_vault():
@@ -54,17 +54,24 @@ def user_dashboard():
     (1) Password Vault
     (2) Add Password
     (3) Search
+    (4) Log Out
     """)
     choice = input("select an option: ")
     if choice == "1":
         view_vault()
     elif choice == "2":
-        title = input("Title: ")
-        username = input("Username: ")
-        password = input("Password: ")
+        title = input("Account Title: ")
+        username = input("Account Username: ")
+        password = input("Account Password: ")
         account = Password.create(title, username, password, user_id)
         print(account)
         return user_dashboard()
+    elif choice == "3":
+        pass
+    elif choice == "4":
+        global user_id
+        user_id = None
+        return main()
         
 def password_vault():
     pass
