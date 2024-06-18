@@ -65,7 +65,6 @@ class User:
             INSERT INTO users (username, password)
             VALUES ( ? , ? )
         """
-        
         usernames = []
         for user in User.get_all():
             usernames.append(user.username)
@@ -76,7 +75,6 @@ class User:
             type(self).all[self.id] = self # creates a dictionary entry in User.all
         else:
             print('Account already exists. Please sign up.')
-
         
     @classmethod
     def create(cls, new_username, new_password):
