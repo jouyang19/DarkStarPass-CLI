@@ -65,8 +65,10 @@ class User:
             INSERT INTO users (username, password)
             VALUES ( ? , ? )
         """
-        for item in User.get_all():
-            if item 
+        usernames = []
+        for user in User.get_all():
+            usernames.append(user.username)
+        if self.username not in usernames:
             CURSOR.execute(sql, (self.username, self.password)) # executes SQL and inputs username and password as values for a new row in the users table in the vault database
             CONN.commit() #commits the changes to the DB
             self.id = CURSOR.lastrowid # Retrieves the primary key id of last row and saves it to instance id attribute.
