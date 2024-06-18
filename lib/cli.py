@@ -22,10 +22,5 @@ def main():
             new_user.save()
             
 
-
-        
-
-
-
 if __name__ == "__main__":
     main()
