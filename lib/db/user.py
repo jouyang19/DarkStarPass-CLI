@@ -75,7 +75,7 @@ class User:
             self.id = CURSOR.lastrowid # Retrieves the primary key id of last row and saves it to instance id attribute.
             type(self).all[self.id] = self # creates a dictionary entry in User.all
         else:
-            raise Exception('Account already exists. Please sign up.')
+            print('Account already exists. Please sign up.')
 
         
     @classmethod
