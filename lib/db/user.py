@@ -65,6 +65,7 @@ class User:
             INSERT INTO users (username, password)
             VALUES ( ? , ? )
         """
+        
         usernames = []
         for user in User.get_all():
             usernames.append(user.username)
