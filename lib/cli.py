@@ -39,16 +39,16 @@ def view_vault():
     def select():
         choice = input("select an option: ")
         if choice == "1":
-            entry_id = input("Enter Account #: ")
-                
-            # if entry_id.isdigit():
-            #     view_entry(entry_id)
-            # elif type(entry_id) is not int:
-            #     print("Please try again.")
-            #     select()
-            # else:
-            #     return view_vault()
-            view_entry(entry_id)
+            def again():
+                entry_id = input("Enter Account #: ")
+                if entry_id.isdigit():
+                    view_entry(entry_id)
+                elif entry_id.isdigit() is False:
+                    print("Please try again.")
+                    again()
+                else:
+                    return view_vault()
+            again()
         elif choice == "2":
             entry_id = input("Enter Account #: ")
             return edit_entry(entry_id)
@@ -173,6 +173,7 @@ def main():
     print("""
     (1) Log In
     (2) Sign Up
+    (3) Quit
     """)
 
     done = False
@@ -184,6 +185,10 @@ def main():
             sign_up()
         elif choice == "1":
             log_in()
+        elif choice == "3":
+            exit()
+        else:
+            print('Please try again.')
 
 if __name__ == "__main__":
     Password.create_table()
