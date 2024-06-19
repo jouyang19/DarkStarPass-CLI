@@ -27,11 +27,16 @@ def log_in():
     
     
 def view_vault():
+    print("""
+    ===============================================
+    ****************** Accounts *******************
+    """)
     for item in Password.find_all_by_user_id(user_id):
+        print("    ")
         print(item)
     print("""
     ===============================================
-    ******************** Vault ********************
+    ******************* Options *******************
     (1) View Entry
     (2) Edit Entry
     (3) Delete Entry
