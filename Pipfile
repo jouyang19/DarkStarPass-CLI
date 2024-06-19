@@ -11,6 +11,8 @@ simple-term-menu = "*"
 cryptography = "*"
 rsa = "*"
 cryptograpy = "*"
+fuzzywuzzy = "*"
+python-levenshtein = "*"
 
 [dev-packages]
 

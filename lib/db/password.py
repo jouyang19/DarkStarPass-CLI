@@ -13,7 +13,7 @@ class Password:
         self.id = id
         
     def __repr__(self):
-        return f'    [{self.id}] {self.title}'
+        return f'[{self.id}] {self.title}'
     
     @classmethod
     def create_table(cls):
