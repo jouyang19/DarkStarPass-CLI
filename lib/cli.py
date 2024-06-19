@@ -3,11 +3,17 @@ from db.password import Password
 
 user_id = None
 
-def delete_entry():
-    delete_id = input("    Type account # to delete: ")
-    entry = Password.find_by_id(delete_id)
-    entry.delete_row()
-    user_dashboard()
+def delete_entry(entry_id=None):
+    if entry_id is None:
+        delete_id = input("    Type account # to delete: ")
+        entry = Password.find_by_id(delete_id)
+        entry.delete_row()
+        view_vault()
+    elif entry_id:
+        entry = Password.find_by_id(entry_id)
+        entry.delete_row()
+    else:
+        return view_vault()
 
 def sign_up():
     new_username = input("    Username: ")
@@ -27,8 +33,7 @@ def log_in():
             user_id = user.id
             return user_dashboard()
     else:
-        print("Wrong username or password")
-        return main()
+        print("    Wrong username or password")
     
     
     
@@ -79,30 +84,35 @@ def view_entry(entry_id):
     
     entry = Password.find_by_id(entry_id)
     
-    print(f''' 
+    if entry and entry.user_id == user_id:
+        print(f''' 
     ===============================================   
     *************** Account Details ***************
-    
+        
     Title: {entry.title}
-    
+        
     Username: {entry.username}
     Password: {entry.password}
-    
+        
     (1) Edit    
     (2) Back                             (3) Delete
-    ''')
-    choice = input("    select an option: ")
-    if choice == "1":
-        edit_entry(entry.id)
-    elif choice == "2":
-        return view_vault()
-    elif choice == "3":
-        delete_entry()
-    elif choice == "4": 
-        return user_dashboard()
-        
+        ''')
+        choice = input("    select an option: ")
+        if choice == "1":
+            edit_entry(entry.id)
+        elif choice == "2":
+            return view_vault()
+        elif choice == "3":
+            delete_entry(entry.id)
+            return view_vault()
+        elif choice == "4": 
+            return user_dashboard()
+            
+        else:
+            return view_entry(entry.id)
     else:
-        return view_entry(entry.id)
+        print('    Account does not exist.')
+        return view_vault()
     
 def edit_entry(entry_id): 
     
@@ -110,8 +120,6 @@ def edit_entry(entry_id):
     
     print(f'''
     ===============================================
-    Account Entry # {entry.id}
-    
     *************** Account Details ***************
     
     Title: {entry.title}
@@ -148,7 +156,8 @@ def edit_entry(entry_id):
     elif choice == "4":
         return view_entry(entry.id)
     elif choice == "5":
-        pass
+        delete_entry(entry.id)
+        return view_vault()
     else:
         return edit_entry(entry.id)
 
@@ -199,10 +208,11 @@ def main():
     while not done:
         
         choice = input("    Select an option: ")
-        if choice == "2":
-            sign_up()
-        elif choice == "1":
+        if choice == "1":
             log_in()
+            return main()
+        elif choice == "2":
+            sign_up()
         elif choice == "3":
             exit()
         else:
