@@ -30,17 +30,15 @@ def log_in():
         print("Wrong username or password")
         return main()
     
-    
-    
 def view_vault():
     print('''
     ================================================
     **************** Password Vault ****************
-    (Accounts)''')
+    Accounts:''')
     for item in Password.find_all_by_user_id(user_id):
         print(item)
     print("""
-    (Options)
+    Options:
     [1] View Acccount
     [2] Edit Account
     [3] Delete Account
@@ -73,7 +71,6 @@ def view_vault():
         
     select()
     
-    
 def view_entry(entry_id):
     
     entry = Password.find_by_id(entry_id)
@@ -88,8 +85,7 @@ def view_entry(entry_id):
     Password: {entry.password}
     
     [1] Edit    
-    [2] Back                             [3] Delete
-    ''')
+    [2] Back                             [3] Delete''')
     choice = input("    select an option: ")
     if choice == "1":
         edit_entry(entry.id)
