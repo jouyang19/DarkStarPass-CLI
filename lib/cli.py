@@ -30,10 +30,13 @@ def view_vault():
     for item in Password.find_all_by_user_id(user_id):
         print(item)
     print("""
+    ===============================================
+    ******************** Vault ********************
     (1) View Entry
     (2) Edit Entry
     (3) Delete Entry
     (4) Go Back
+    ===============================================
     """)
     
     def select():
@@ -142,10 +145,13 @@ def edit_entry(entry_id):
 
 def user_dashboard():
     print("""
+    ===============================================
+    ****************** Dashboard ******************
     (1) Password Vault
     (2) Add Password
     (3) Search
     (4) Log Out
+    ===============================================
     """)
     choice = input("select an option: ")
     if choice == "1":
@@ -168,12 +174,13 @@ def user_dashboard():
 
 def main():
 
-    print("Dark Star Pass Online")
-
     print("""
+    ===============================================
+    ********** Welcome to Dark Star Pass **********
     (1) Log In
     (2) Sign Up
     (3) Quit
+    ===============================================
     """)
 
     done = False
