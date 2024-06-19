@@ -161,6 +161,7 @@ def user_dashboard():
         title = input("Account Title: ")
         username = input("Account Username: ")
         password = input("Account Password: ")
+        global user_id
         account = Password.create(title, username, password, user_id)
         print(account)
         return user_dashboard()
