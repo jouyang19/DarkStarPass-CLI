@@ -98,18 +98,21 @@ def view_entry(entry_id):
     [1] Edit    
     [2] Back                             [3] Delete
     ''')
-    choice = input("    select an option: ")
-    if choice == "1":
-        edit_entry(entry.id)
-    elif choice == "2":
-        return view_vault()
-    elif choice == "3":
-        delete_entry()
-    elif choice == "4": 
-        return user_dashboard()
-        
+        choice = input("    select an option: ")
+        if choice == "1":
+            edit_entry(entry.id)
+        elif choice == "2":
+            return view_vault()
+        elif choice == "3":
+            delete_entry()
+        elif choice == "4": 
+            return user_dashboard()
+
+        else:
+            return view_entry(entry.id)
     else:
-        return view_entry(entry.id)
+        print("    Account does not exist")
+        return view_vault()
     
 def edit_entry(entry_id): 
     
