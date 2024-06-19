@@ -34,17 +34,17 @@ def log_in():
     
 def view_vault():
     print('''
-    ===============================================
-    ******************** Vault ********************
-    [Accounts]''')
+    ================================================
+    **************** Password Vault ****************
+    (Accounts)''')
     for item in Password.find_all_by_user_id(user_id):
         print(item)
     print("""
-    [Options]
-    (1) View Entry
-    (2) Edit Entry
-    (3) Delete Entry
-    (4) Go Back
+    (Options)
+    [1] View Acccount
+    [2] Edit Account
+    [3] Delete Account
+    [4] Go Back
     
     """)
     
@@ -82,13 +82,13 @@ def view_entry(entry_id):
     ===============================================   
     *************** Account Details ***************
     
-    Title: {entry.title}
+    {entry.title}
     
     Username: {entry.username}
     Password: {entry.password}
     
-    (1) Edit    
-    (2) Back                             (3) Delete
+    [1] Edit    
+    [2] Back                             [3] Delete
     ''')
     choice = input("    select an option: ")
     if choice == "1":
@@ -113,7 +113,7 @@ def edit_entry(entry_id):
     
     *************** Account Details ***************
     
-    Title: {entry.title}
+    {entry.title}
     
     Username: {entry.username}
     Password: {entry.password}
@@ -156,10 +156,10 @@ def user_dashboard():
     ===============================================
     ****************** Dashboard ******************
 
-    (1) Password Vault
-    (2) Add Password
-    (3) Search
-    (4) Log Out
+    [1] Password Vault
+    [2] Add Password
+    [3] Search
+    [4] Log Out
 
     """)
     choice = input("    Select an option: ")
@@ -187,9 +187,9 @@ def main():
     ===============================================
     **************** Dark Star Pass ***************
 
-    (1) Log In
-    (2) Sign Up
-    (3) Quit
+    [1] Log In
+    [2] Sign Up
+    [3] Quit
 
     """)
 
