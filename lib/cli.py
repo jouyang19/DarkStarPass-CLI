@@ -3,6 +3,12 @@ from db.password import Password
 
 user_id = None
 
+def delete_entry():
+    delete_id = input("Type account # to delete: ")
+    entry = Password.find_by_id(delete_id)
+    entry.delete_row()
+    user_dashboard()
+
 def sign_up():
     new_username = input("Username: ")
     new_password = input("Password: ")
@@ -43,7 +49,8 @@ def view_vault():
     elif choice == "2":
         pass
     elif choice == "3":
-        pass
+        delete_entry()
+
     elif choice == "4": 
         return user_dashboard()
     
@@ -63,19 +70,16 @@ def user_dashboard():
         title = input("Account Title: ")
         username = input("Account Username: ")
         password = input("Account Password: ")
+        global user_id
         account = Password.create(title, username, password, user_id)
         print(account)
         return user_dashboard()
     elif choice == "3":
         pass
     elif choice == "4":
-        global user_id
         user_id = None
         return main()
         
-def password_vault():
-    pass
-
 def view_entry():
     pass
 

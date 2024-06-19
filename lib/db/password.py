@@ -32,7 +32,7 @@ class Password:
         CONN.commit()
         
     @classmethod
-    def drop_table(self):
+    def drop_table(cls):
         """Drops users table from database if it exists"""
         sql = """
         DROP TABLE IF EXISTS users
@@ -40,6 +40,15 @@ class Password:
         CURSOR.execute(sql)
         CONN.commit()
         
+
+    def delete_row(self):
+        sql = """ 
+        DELETE FROM passwords WHERE id = ? 
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+
     def save(self):
         """Inserts a new row with the attributes values of the current class instance. Updates instance id with primary key value of new row"""
         
