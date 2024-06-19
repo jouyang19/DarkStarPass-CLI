@@ -34,7 +34,7 @@ def log_in():
             return user_dashboard()
     else:
         print("    Wrong username or password")
-    
+        return main()
     
     
 def view_vault():
@@ -65,6 +65,7 @@ def view_vault():
                     print("    Please try again.")
                     again()
                 else:
+                    print("    Account does not exist")
                     return view_vault()
             again()
         elif choice == "2":
@@ -114,48 +115,52 @@ def edit_entry(entry_id):
     
     entry = Password.find_by_id(entry_id)
     
-    print(f'''
+    if entry and entry.id == entry_id:
+        print(f'''
     ===============================================
     *************** Account Details ***************
-    
+        
     {entry.title}
-    
+        
     Username: {entry.username}
     Password: {entry.password}
-    
+        
     Which field would you like to edit:
-    
+        
     (1) Title? or (2) Username? or (3) Password?
-                                           
+                                            
     (4) Back                       (5) Delete entry                        
     ===============================================
     ''')
-    choice = input("    select an option: ")
-    if choice == "1":
-        new_title = input("    Enter new title: ")
-        entry.title = new_title
-        entry.update()
-        print("    Title updated successfully!")
-        return edit_entry(entry.id)
-    elif choice == "2":
-        new_username = input("    Enter new username: ")
-        entry.username = new_username
-        entry.update()
-        print("    Username updated successfully!")
-        return edit_entry(entry.id)
-    elif choice == "3":
-        new_password = input("    Enter new password: ")
-        entry.password = new_password
-        entry.update()
-        print("Password updated successfully!")
-        return edit_entry(entry.id)
-    elif choice == "4":
-        return view_entry(entry.id)
-    elif choice == "5":
-        delete_entry(entry.id)
+        choice = input("    select an option: ")
+        if choice == "1":
+            new_title = input("    Enter new title: ")
+            entry.title = new_title
+            entry.update()
+            print("    Title updated successfully!")
+            return edit_entry(entry.id)
+        elif choice == "2":
+            new_username = input("    Enter new username: ")
+            entry.username = new_username
+            entry.update()
+            print("    Username updated successfully!")
+            return edit_entry(entry.id)
+        elif choice == "3":
+            new_password = input("    Enter new password: ")
+            entry.password = new_password
+            entry.update()
+            print("Password updated successfully!")
+            return edit_entry(entry.id)
+        elif choice == "4":
+            return view_entry(entry.id)
+        elif choice == "5":
+            delete_entry(entry.id)
+            return view_vault()
+        else:
+            return edit_entry(entry.id)
+    else: 
+        print("    Account does not exist")
         return view_vault()
-    else:
-        return edit_entry(entry.id)
 
 def user_dashboard():
     print("""
