@@ -1,5 +1,4 @@
 from db.init import CONN, CURSOR
-from db.user import User
 
 class Password:
     
