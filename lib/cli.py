@@ -235,20 +235,23 @@ def edit_entry(entry_id):
         choice = input("    select an option: ")
         if choice == "1":
             new_title = input("    Enter new title: ")
-            entry.title = new_title
+            if not new_title == "":
+                entry.title = new_title
             entry.update()
             print("    Title updated successfully!")
             return edit_entry(entry.id)
         elif choice == "2":
             new_username = input("    Enter new username: ")
-            entry.username = new_username
+            if not new_username == "":
+                entry.username = new_username
             entry.update()
             print("    Username updated successfully!")
             return edit_entry(entry.id)
         elif choice == "3":
             new_password = input("    Enter new password: ")
             e_new_password = password_encrypt(new_password.encode(), user_pass)
-            entry.password = e_new_password
+            if not new_password == "":
+                entry.password = e_new_password
             entry.update()
             print("    Password updated successfully!")
             return edit_entry(entry.id)
