@@ -30,7 +30,7 @@ def log_in():
         print("    Wrong username or password")
         return main()
     
-""" USER LOGS IN """
+""" MAIN MENU """
 
 def user_dashboard():
     print("""
@@ -56,7 +56,7 @@ def user_dashboard():
     else:
         return user_dashboard()
 
-""" INSIDE THE PASSWORD VAULT """
+""" DASHBOARD OPTIONS """
 
 def view_vault():
     print('''
@@ -116,6 +116,7 @@ def search_query():
     ''')
     search_a = input("    Type account name: ")
     result = []
+    user_passwords = user_instance.passwords()
     for item in user_passwords:
         result.append(str(item))
     matches = difflib.get_close_matches(search_a, result, n=3, cutoff=0.3)
@@ -158,7 +159,6 @@ def search_view():
             return view_vault()
         
     select()
-
 
 """ ENTRY OPTIONS """  
 
