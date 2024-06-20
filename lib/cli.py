@@ -115,7 +115,8 @@ def view_vault():
             entry_id = input(Fore.GREEN + "    Enter Account #: ")
             return edit_entry(entry_id)
         elif choice == "3":
-            return delete_entry()
+            entry_id = input(Fore.GREEN + "    Enter account #: ")
+            return delete_entry(entry_id)
         elif choice == "4": 
             return user_dashboard()
         else:
@@ -127,7 +128,7 @@ def add_password():
     Password.create_table()
     title = input(Fore.GREEN + "    Account Title: ")
     username = input(Fore.GREEN + "    Account Username: ")
-    password = input(Fore.GREEN + "    Account Password: ")
+    password = getpass.getpass(Fore.GREEN + "    Account Password: ")
     e_title = password_encrypt(title.encode(), user_pass)
     e_username = password_encrypt(username.encode(), user_pass)
     e_password = password_encrypt(password.encode(), user_pass)
@@ -225,7 +226,7 @@ def view_entry(entry_id):
         elif choice == "2":
             return view_vault()
         elif choice == "3":
-            delete_entry()
+            delete_entry(entry.id)
         elif choice == "4": 
             return user_dashboard()
 
@@ -285,7 +286,7 @@ def edit_entry(entry_id):
             print(Fore.GREEN + "    Username updated successfully!")
             return edit_entry(entry.id)
         elif choice == "3":
-            new_password = input(Fore.GREEN + "    Enter new password: ")
+            new_password = getpass.getpass(Fore.GREEN + "    Enter new password: ")
             e_new_password = password_encrypt(new_password.encode(), user_pass)
             if not new_password == "":
                 entry.password = e_new_password
@@ -305,13 +306,12 @@ def edit_entry(entry_id):
 
 def delete_entry(entry_id=None):
     if entry_id is None:
-        delete_id = input(Fore.GREEN + Style.RESET_ALL + "    Select Account # to delete: ")
-        entry = Password.find_by_id(delete_id)
-        entry.delete_row()
         view_vault()
-    elif entry_id:
+    elif entry_id and Password.find_by_id(entry_id):
         entry = Password.find_by_id(entry_id)
-        entry.delete_row()
+        if entry.user_id == user_id:
+            entry.delete_row()
+            return view_vault()
     else:
         return view_vault()
 
