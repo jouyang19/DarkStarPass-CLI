@@ -23,8 +23,9 @@ def clear_screen():
 def sign_up():
     new_username = input(Fore.GREEN + "    Username: ")
     new_password = getpass.getpass(Fore.GREEN + "    Password: ")
+    username = hashlib.sha256(new_username.encode()).hexdigest()
     password = hashlib.sha256(new_password.encode()).hexdigest()
-    user = User.create(new_username, password)
+    user = User.create(username, password)
     global user_id
     user_id = user.id
     return main()
@@ -34,10 +35,11 @@ def log_in():
     password = getpass.getpass(Fore.GREEN + "    Password: ")
     global user_pass
     user_pass = password
-    user = User.find_by_name(username)
+    h_username = hashlib.sha256(username.encode()).hexdigest()
+    user = User.find_by_name(h_username)
     h_password = hashlib.sha256(password.encode()).hexdigest()
     if user:
-        if h_password == user.password:
+        if h_password == user.password and h_username == user.username:
             global user_id
             user_id = user.id
             global user_instance
