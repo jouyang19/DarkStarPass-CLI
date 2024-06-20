@@ -202,9 +202,12 @@ def view_entry(entry_id):
     
     entry = Password.find_by_id(entry_id)
     
-    d_title = password_decrypt(entry.title, user_pass).decode()
-    d_username = password_decrypt(entry.username, user_pass).decode()
-    d_password = password_decrypt(entry.password, user_pass).decode()
+    if entry and entry.user_id == user_id: 
+        d_title = password_decrypt(entry.title, user_pass).decode()
+        d_username = password_decrypt(entry.username, user_pass).decode()
+        d_password = password_decrypt(entry.password, user_pass).decode()
+    else: 
+        return view_vault()
     
     if entry and entry.user_id == user_id:
         print(Style.BRIGHT + Fore.RESET + """
