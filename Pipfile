@@ -13,6 +13,7 @@ rsa = "*"
 cryptograpy = "*"
 fuzzywuzzy = "*"
 python-levenshtein = "*"
+colorama = "*"
 
 [dev-packages]
 
