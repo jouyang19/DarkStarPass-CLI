@@ -7,8 +7,8 @@ name = "pypi"
 ipdb = "*"
 faker = "*"
 pytest = "7.1.3"
-simple-term-menu = "*"
 cryptograpy = "*"
+colorama = "*"
 
 [dev-packages]
 
