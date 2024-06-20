@@ -2,6 +2,7 @@ from db.user import User
 from db.password import Password
 import difflib
 from colorama import init, Fore, Back, Style
+import os
 
 init()
 Password.create_table()
@@ -9,6 +10,9 @@ User.create_table()
 user_id = None
 user_instance = None
 user_passwords = None
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 """ PROGRAM STARTS """
 
@@ -40,6 +44,7 @@ def log_in():
 """ MAIN MENU """
 
 def user_dashboard():
+    clear_screen()
     print(Style.BRIGHT + Fore.RESET + """
     ===============================================
     ****************** Dashboard ******************""")
@@ -65,9 +70,10 @@ def user_dashboard():
 """ DASHBOARD OPTIONS """
 
 def view_vault():
+    clear_screen()
     print(Style.BRIGHT + Fore.RESET + '''
-    ================================================
-    **************** Password Vault ****************''')
+    ===============================================
+    **************** Password Vault ***************''')
     print(Style.NORMAL + """    ACCOUNTS:""")
     for item in Password.find_all_by_user_id(user_id):
         print(f"    {item}")
@@ -114,9 +120,10 @@ def add_password():
     return user_dashboard()
 
 def search_query():
+    clear_screen()
     print(Style.BRIGHT + Fore.RESET + '''
-    ================================================
-    ******************** Search ********************''')
+    ===============================================
+    ******************** Search *******************''')
     search_a = input(Fore.GREEN + Style.RESET_ALL + "    Type account name: ")
     result = []
     user_passwords = user_instance.passwords()
@@ -165,7 +172,7 @@ def search_view():
 """ ENTRY OPTIONS """  
 
 def view_entry(entry_id):
-    
+    clear_screen()
     entry = Password.find_by_id(entry_id)
     
     if entry and entry.user_id == user_id:
@@ -198,13 +205,13 @@ def view_entry(entry_id):
         return view_vault()
     
 def edit_entry(entry_id): 
-    
+    clear_screen()
     entry = Password.find_by_id(entry_id)
     
     if entry and entry.user_id == user_id:
         print(Style.BRIGHT + Fore.RESET + """ 
     ===============================================
-    ******************* Editor ********************""")
+    ******************** Editor *******************""")
         print(Style.NORMAL + f'''    
     {entry.title}
         
@@ -263,7 +270,7 @@ def delete_entry(entry_id=None):
 """ Main """
 
 def main():
-    
+    clear_screen()
     print(Style.BRIGHT + Fore.RESET + """
     ===============================================
     **************** Dark Star Pass ***************""")
@@ -272,7 +279,7 @@ def main():
     [2] Sign Up
     [3] Quit
 
-    Type a number to continue
+    Type a number to continue.
      """)
 
     done = False
