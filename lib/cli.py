@@ -103,11 +103,7 @@ def view_vault():
             def again():
                 entry_id = input(Fore.GREEN + "    Enter Account #: ")
                 if entry_id.isdigit():
-                    if Password.find_all_by_user_id(user_id):
                         view_entry(entry_id)
-                    else:
-                        print(Fore.RED + "    You do not have accounts to display.")
-                        return select()
                 elif entry_id.isdigit() is False:
                     print(Fore.RED + "    Please try again.")
                     again()
@@ -207,6 +203,7 @@ def view_entry(entry_id):
         d_username = password_decrypt(entry.username, user_pass).decode()
         d_password = password_decrypt(entry.password, user_pass).decode()
     else: 
+        print(Fore.RED + "    You do not have accounts to display.")
         return view_vault()
     
     if entry and entry.user_id == user_id:
@@ -244,11 +241,12 @@ def edit_entry(entry_id):
     
     entry = Password.find_by_id(entry_id)
     
-    d_title = password_decrypt(entry.title, user_pass).decode()
-    d_username = password_decrypt(entry.username, user_pass).decode()
-    d_password = password_decrypt(entry.password, user_pass).decode()
-    
-    print(entry, entry.id, entry_id) 
+    if entry and entry.user_id == user_id:
+        d_title = password_decrypt(entry.title, user_pass).decode()
+        d_username = password_decrypt(entry.username, user_pass).decode()
+        d_password = password_decrypt(entry.password, user_pass).decode()
+    else:
+        return view_vault()
     
     if entry and entry.user_id == user_id:
         
