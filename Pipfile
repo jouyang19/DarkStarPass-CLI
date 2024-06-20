@@ -8,11 +8,7 @@ ipdb = "*"
 faker = "*"
 pytest = "7.1.3"
 simple-term-menu = "*"
-cryptography = "*"
-rsa = "*"
 cryptograpy = "*"
-fuzzywuzzy = "*"
-python-levenshtein = "*"
 
 [dev-packages]
 
