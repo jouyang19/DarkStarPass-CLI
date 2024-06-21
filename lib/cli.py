@@ -6,6 +6,7 @@ from db.encryption import password_decrypt, password_encrypt
 from colorama import init, Fore, Style
 import getpass
 import os
+import maskpass
 
 init()
 Password.create_table()
@@ -22,7 +23,7 @@ def clear_screen():
 
 def sign_up():
     new_username = input(Fore.GREEN + "    Username: ")
-    new_password = getpass.getpass(Fore.GREEN + "    Password: ")
+    new_password = maskpass.askpass(Fore.GREEN + "    Password: ")
     username = hashlib.sha256(new_username.encode()).hexdigest()
     password = hashlib.sha256(new_password.encode()).hexdigest()
     user = User.create(username, password)
@@ -32,7 +33,7 @@ def sign_up():
 
 def log_in():
     username = input(Fore.GREEN + "    Username: ")
-    password = getpass.getpass(Fore.GREEN + "    Password: ")
+    password = maskpass.askpass("    Password: ")
     global user_pass
     user_pass = password
     h_username = hashlib.sha256(username.encode()).hexdigest()
@@ -130,7 +131,7 @@ def add_password():
     Password.create_table()
     title = input(Fore.GREEN + "    Account Title: ")
     username = input(Fore.GREEN + "    Account Username: ")
-    password = getpass.getpass(Fore.GREEN + "    Account Password: ")
+    password = maskpass.askpass(Fore.GREEN + "    Account Password: ")
     e_title = password_encrypt(title.encode(), user_pass)
     e_username = password_encrypt(username.encode(), user_pass)
     e_password = password_encrypt(password.encode(), user_pass)
@@ -290,7 +291,7 @@ def edit_entry(entry_id):
             print(Fore.GREEN + "    Username updated successfully!")
             return edit_entry(entry.id)
         elif choice == "3":
-            new_password = getpass.getpass(Fore.GREEN + "    Enter new password: ")
+            new_password = maskpass.askpass(Fore.GREEN + "    Enter new password: ")
             e_new_password = password_encrypt(new_password.encode(), user_pass)
             if not new_password == "":
                 entry.password = e_new_password
