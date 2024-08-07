@@ -22,9 +22,13 @@ Dark Star Pass is a secure password management system developed as a Phase 3 pro
 1. Clone this repository
 2. Install the required dependencies:
    ```
-   pip install -r requirements.txt
+   pipenv install
    ```
-3. Run the application:
+3. Enter into python environment:
+   ```
+   pipenv shell
+   ```
+4. Run the application:
    ```
    python lib/cli.py
    ```
