@@ -65,3 +65,20 @@ This project is part of an educational program and is not actively maintained. H
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+## Screenshots
+
+Here are some screenshots of the Dark Star Pass application in action:
+
+| Feature        | Screenshot                          |
+| -------------- | ----------------------------------- |
+| Main Menu      | ![Main Menu](images/menu.png)       |
+| Password Vault | ![Password Vault](images/vault.png) |
+| Add Password   | ![Add Password](images/add.png)     |
+| Edit Password  | ![Edit Password](images/edit.png)   |
+| Search         | ![Search](images/search.png)        |
+| View Entry     | ![Entry](images/entry.png)          |
+| Encryption     | ![enc](images/encryption.png)       |
+| Hashing        | ![hash](images/hashing.png)         |
+
+These screenshots provide a visual overview of the key features and user interface of Dark Star Pass.

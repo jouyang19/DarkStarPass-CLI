@@ -58,6 +58,7 @@ __pycache__
 
 *.db
 */*.db
+*/*/*.db
 migrations
 instance
 
