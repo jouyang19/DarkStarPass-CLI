@@ -149,8 +149,9 @@ def search_query():
     search_a = input(Fore.GREEN + Style.RESET_ALL + "    Type account name: ")
     result = []
     user_passwords = user_instance.passwords()
+    
     for item in user_passwords:
-        # password_decrypt(item.password, user_pass).decode()
+        item.title = password_decrypt(item.title, user_pass).decode()
         result.append(str(item))
     matches = difflib.get_close_matches(search_a, result, n=3, cutoff=0.3)
     for item in matches:
@@ -185,7 +186,8 @@ def search_view():
             entry_id = input(Fore.GREEN + "    Enter Account #: ")
             return edit_entry(entry_id)
         elif choice == "3":
-            return delete_entry()
+            entry_id = input(Fore.GREEN + "    Enter Account #: ")
+            return delete_entry(entry_id)
         elif choice == "4": 
             return user_dashboard()
         else:
