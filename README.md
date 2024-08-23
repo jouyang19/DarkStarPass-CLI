@@ -66,10 +66,6 @@ Passwords are encrypted using the Fernet symmetric encryption scheme from the cr
 
 This project is part of an educational program and is not actively maintained. However, if you'd like to suggest improvements or report issues, please feel free to open an issue or submit a pull request.
 
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## Screenshots
 
 Here are some screenshots of the Dark Star Pass application in action:
